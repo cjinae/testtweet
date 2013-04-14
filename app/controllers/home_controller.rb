@@ -4,5 +4,4 @@ class HomeController < ApplicationController
 		@tweets = Feed.get_tweets
 	end
 
-
 end

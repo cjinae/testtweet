@@ -1,27 +1,28 @@
 
-<div class="navbar ">
-  <div class="navbar-inner">
-	<div class="logo">
-		<a href="#" class = "question">+ New Question</a>
-    	<a href="#" class="login">Instructor Login</a>
-		<h1 class = "title"><span class = "bit">Bit</span>Query</h1>
-    </div>
-  </div>
+ <div class="navbar ">
+ <div class="navbar-inner">
+       <div class="logo">
+               <a href="#" class = "question">+ New Question</a>
+           <a href="#" class="login">Login with Twitter</a>
+               <h1 class = "title"><span class = "bit">Bit</span>Query</h1>
+   </div>
+ </div>
 </div>
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span10 tweet-container">
-    	<h3 class = "feed-title">Query Feed</h3>
-    	<%=debug @tweets%>
-    </div>
-    <div class="span2 hashtag-container">
-    	<h3 class = "hashtag-title">#Hashtags</h3>
-    </div>
-  </div>
-</div>
+ <div class="row-fluid">
+   <div class="span10 tweet-container">
+           <h3 class = "feed-title">Queries Feed</h3>
+                <% @tweets.each do |tweet_hash|%>
+              <%= tweet_hash['text'] %><br><br>
+      <% end %>
+
+     <div class="clear"></div>
+   </div>
+   <div class="span2 hashtag-container">
+           <h3 class = "hashtag-title">#Hashtags</h3>
+   </div>
+
+ </div>
 
 </div>
-
-
-

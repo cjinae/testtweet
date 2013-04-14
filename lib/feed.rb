@@ -2,6 +2,8 @@ class Feed
 
 def self.get_tweets
 
+    @ht1 = 'bithack'
+
     require 'rubygems'
     require 'oauth'
     require 'json'
@@ -16,7 +18,7 @@ def self.get_tweets
     #     "text" => "motivation",
     #     "count" => 10,
     # )
-    address = URI("https://search.twitter.com/search.json?q=%23heroku&rpp=5&include_entities=true&result_type=mixed")
+    address = URI("https://search.twitter.com/search.json?q=%23#{@ht1}&rpp=5&include_entities=true&result_type=mixed")
     # address = URI("#{baseurl}#{path}?#{query}")
     request = Net::HTTP::Get.new address.request_uri 
 
@@ -52,7 +54,8 @@ def self.get_tweets
     # Parse and print the Tweet if the response code was 200
     tweets = nil
     if response.code == '200' then
-      tweets = JSON.parse(response.body)
+      tweets = JSON.parse(response.body)["results"]
+
       # print_timeline(tweets)
     else 
       raise response.inspect
