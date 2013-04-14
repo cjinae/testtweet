@@ -9,15 +9,16 @@ def self.get_tweets
     # Now you will fetch /1.1/statuses/user_timeline.json,
     # returns a list of public Tweets from the specified
     # account.
-    baseurl = "https://api.twitter.com"
-    path    = "/1.1/statuses/user_timeline.json"
-    query   = URI.encode_www_form(
-        "screen_name" => "cleejin",
-        "text" => "",
-        "count" => 10,
-    )
-    address = URI("#{baseurl}#{path}?#{query}")
-    request = Net::HTTP::Get.new address.request_uri
+    # baseurl = "https://api.twitter.com"
+    # path    = "/1.1/statuses/user_timeline.json"
+    # query   = URI.encode_www_form(
+    #     "screen_name" => "cleejin",
+    #     "text" => "motivation",
+    #     "count" => 10,
+    # )
+    address = URI("https://search.twitter.com/search.json?q=%23heroku&rpp=5&include_entities=true&result_type=mixed")
+    # address = URI("#{baseurl}#{path}?#{query}")
+    request = Net::HTTP::Get.new address.request_uri 
 
     # Print data about a list of Tweets
     # def print_timeline(tweets)
@@ -36,15 +37,15 @@ def self.get_tweets
     # exercise, no need to enter them again here. The
     # ||= operator will only assign these values if
     # they are not already set.
-    consumer_key = OAuth::Consumer.new(
-        "Ku9aIHZepkV7vgKnBQTd0w",
-        "rqiq7oLg3eCZL40gi6KFpYIyVHnl8aE9mOfIavQkgVw")
-    access_token = OAuth::Token.new(
-        "572582957-kMS1ohnBaSZxT4xXBdh7db7A3faGifVvxjJE9Vtc",
-        "HeM9K5exMd415zHqz7XLFxmhvaqvjbVDVcK8nrUoKvk")
+    # consumer_key = OAuth::Consumer.new(
+    #     "Ku9aIHZepkV7vgKnBQTd0w",
+    #     "rqiq7oLg3eCZL40gi6KFpYIyVHnl8aE9mOfIavQkgVw")
+    # access_token = OAuth::Token.new(
+    #     "572582957-kMS1ohnBaSZxT4xXBdh7db7A3faGifVvxjJE9Vtc",
+    #     "HeM9K5exMd415zHqz7XLFxmhvaqvjbVDVcK8nrUoKvk")
 
     # Issue the request.
-    request.oauth! http, consumer_key, access_token
+    # request.oauth! http, consumer_key, access_token
     http.start
     response = http.request request
 
@@ -54,6 +55,7 @@ def self.get_tweets
       tweets = JSON.parse(response.body)
       # print_timeline(tweets)
     else 
+      raise response.inspect
     	print response.inspect
     end
     return tweets
