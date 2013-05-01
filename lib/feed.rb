@@ -3,6 +3,7 @@ class Feed
 def self.get_tweets
 
     @ht1 = 'bithack'
+    @ht2 = 'coding'
 
     require 'rubygems'
     require 'oauth'
@@ -18,7 +19,7 @@ def self.get_tweets
     #     "text" => "motivation",
     #     "count" => 10,
     # )
-    address = URI("https://search.twitter.com/search.json?q=%23#{@ht1}&rpp=5&include_entities=true&result_type=mixed")
+    address = URI("https://search.twitter.com/search.json?q=%23#{@ht2}&rpp=20&include_entities=true&result_type=mixed")
     # address = URI("#{baseurl}#{path}?#{query}")
     request = Net::HTTP::Get.new address.request_uri 
 
